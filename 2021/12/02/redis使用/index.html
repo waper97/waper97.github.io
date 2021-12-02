@@ -1,297 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>redis使用 | waper97的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="redis使用">
-<meta property="og:type" content="article">
-<meta property="og:title" content="redis使用">
-<meta property="og:url" content="https://github.com/waper97/waper97.github.io.git/2021/12/02/redis%E4%BD%BF%E7%94%A8/index.html">
-<meta property="og:site_name" content="waper97的博客">
-<meta property="og:description" content="redis使用">
-<meta property="og:locale">
-<meta property="article:published_time" content="2021-12-02T02:46:24.000Z">
-<meta property="article:modified_time" content="2021-12-02T03:31:16.013Z">
-<meta property="article:author" content="王鹏">
-<meta property="article:tag" content="redis">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="waper97的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">waper97的博客</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://github.com/waper97/waper97.github.io.git"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-redis使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/12/02/redis%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-12-02T02:46:24.000Z" itemprop="datePublished">2021-12-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      redis使用
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="redis使用"><a href="#redis使用" class="headerlink" title="redis使用"></a>redis使用</h1><span id="more"></span>
-<h3 id="持久化-redis是内存数据库，断电既失去数据所以需要持久化"><a href="#持久化-redis是内存数据库，断电既失去数据所以需要持久化" class="headerlink" title="持久化 : redis是内存数据库，断电既失去数据所以需要持久化"></a>持久化 : redis是内存数据库，断电既失去数据所以需要持久化</h3><blockquote>
-<p>redis持久化的两种方式：</p>
-<ul>
-<li>RDB (redis database) : 生成快照，指定时间间隔内将内存中数据生成快照 snakeshot , 默认文件名称是dump.rbd</li>
-<li>AOF (append  only file)：记录所有操作，启动时恢复  默认文件是 appendonly.aof</li>
-</ul>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">主从复制</span><br><span class="line">主机负责写入，从机负责读 一主二从</span><br><span class="line">从机连接主机后，会立马复制主机的数据过来</span><br><span class="line">宕机问题：一个主机多个从机，主机宕机后，从机无法写入数据，这时候可以手动的 指定其余从机的里面的一个为主机</span><br><span class="line">哨兵模式：就是解决redis集群中出现了主机宕机的情况，其会根据用户指定的配置文件，自己动从 从机里面投票选举一个主机，就不用手动配置了</span><br></pre></td></tr></table></figure>
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
 
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+
+{% block page_class %}page-post-detail{% endblock %}
 
 
+{% block content %}
 
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
 
-
-
-<blockquote>
-<p>redis 发布订阅    </p>
-<p>可以用来做消息通知，即时聊天</p>
-<table>
-<thead>
-<tr>
-<th align="left">序号</th>
-<th align="left">命令及描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">1</td>
-<td align="left">[PSUBSCRIBE pattern <a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-psubscribe.html">pattern …]</a> 订阅一个或多个符合给定模式的频道。</td>
-</tr>
-<tr>
-<td align="left">2</td>
-<td align="left">[PUBSUB subcommand <a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-pubsub.html">argument [argument …]]</a> 查看订阅与发布系统状态。</td>
-</tr>
-<tr>
-<td align="left">3</td>
-<td align="left"><a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-publish.html">PUBLISH channel message</a> 将信息发送到指定的频道。</td>
-</tr>
-<tr>
-<td align="left">4</td>
-<td align="left">[PUNSUBSCRIBE <a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-punsubscribe.html">pattern [pattern …]]</a> 退订所有给定模式的频道。</td>
-</tr>
-<tr>
-<td align="left">5</td>
-<td align="left">[SUBSCRIBE channel <a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-subscribe.html">channel …]</a> 订阅给定的一个或多个频道的信息。</td>
-</tr>
-<tr>
-<td align="left">6</td>
-<td align="left">[UNSUBSCRIBE <a target="_blank" rel="noopener" href="https://m.runoob.com/redis/pub-sub-unsubscribe.html">channel [channel …]]</a> 指退订给定的频道。</td>
-</tr>
-</tbody></table>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://github.com/waper97/waper97.github.io.git/2021/12/02/redis%E4%BD%BF%E7%94%A8/" data-id="ckwodlgcp0000ywmv0iqw5n31" data-title="redis使用" class="article-share-link">Teilen</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2021/11/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">docker常见问题</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Kategorien</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/study/">study</a></li></ul>
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="tag">docker常用命令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" rel="tag">docker常见问题</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="tag">第一篇个人博客</a></li></ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" style="font-size: 10px;">docker常用命令</a> <a href="/tags/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" style="font-size: 10px;">docker常见问题</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" style="font-size: 10px;">第一篇个人博客</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archiv</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">letzter Beitrag</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/12/02/redis%E4%BD%BF%E7%94%A8/">redis使用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">docker常见问题</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/23/nginx%E5%AD%A6%E4%B9%A0/">nginx学习</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/23/%E7%AC%AC%E4%B8%80%E7%AF%87%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">第一篇个人博客</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/23/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2021 王鹏<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
