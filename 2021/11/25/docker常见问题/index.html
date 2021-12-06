@@ -87,7 +87,7 @@
 <meta property="og:description" content="docker常用命令12docker run [OPTIONS] IMAGE [COMMAND] [ARG...] docker run 官方文档地址">
 <meta property="og:locale">
 <meta property="article:published_time" content="2021-11-25T03:37:12.000Z">
-<meta property="article:modified_time" content="2021-12-03T09:58:24.574Z">
+<meta property="article:modified_time" content="2021-12-06T10:20:10.744Z">
 <meta property="article:author" content="王鹏">
 <meta property="article:tag" content="docker常见问题">
 <meta property="article:tag" content="docker常用命令">
@@ -371,6 +371,7 @@
 <td>Keep STDIN open even if not attached ：即使未连接，也要保持 STDIN 打开   STDIN即（standard input：标准输入），还有STDOUT(standard out:标准输出)，STDEER( standard error :标准错误输出)</td>
 </tr>
 </tbody></table>
+<p>docker 在容器运行时，可以通过ctrl+p </p>
 <p><strong>example:</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 80:80 docker/getting-started</span><br></pre></td></tr></table></figure>
 
@@ -404,7 +405,7 @@
 <td align="center">基于什么构镜像</td>
 </tr>
 <tr>
-<td align="center">MAITAINNER</td>
+<td align="center">MAINTAINER</td>
 <td align="center">维护者</td>
 </tr>
 <tr>
@@ -425,7 +426,7 @@
 </tr>
 <tr>
 <td align="center">ADD</td>
-<td align="center">复制新文件</td>
+<td align="center">复制新文件  采用可识别压缩格式（identity、gzip、bzip2 或 xz）的本地 tar 存档，则将其解压缩为目录</td>
 </tr>
 <tr>
 <td align="center">ENV</td>
@@ -458,7 +459,12 @@
 </tr>
 </tbody></table>
 <p><strong>这个点”.” 别忘记</strong></p>
+<h3 id="创建自己的镜像"><a href="#创建自己的镜像" class="headerlink" title="创建自己的镜像"></a>创建自己的镜像</h3><h4 id="1-DockerFile创建"><a href="#1-DockerFile创建" class="headerlink" title="1.DockerFile创建"></a>1.DockerFile创建</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: 10 y: 10 width: 20 height: 20];</span><br><span class="line"></span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER waper97&lt;563667426@qq.com&gt; 维护人</span><br><span class="line">COPY readMe.md /usr/local/readeMe.md 复制文件到指定路径</span><br><span class="line">ADD jdk-8u311-linux-x64.tar.gz /usr/local/ 解压到指定路径下</span><br><span class="line">ADD apache-tomcat-10.0.13.tar.gz /usr/local/ 解压到指定路径下</span><br><span class="line"></span><br><span class="line">RUN yum -y install vim 执行命令</span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME /usr/local/jdk1.8.0_311</span><br><span class="line">ENV CLASSPATH_HOME $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">ENV CATALINA_HOME /usr/local/apache-tomcat-10.0.13</span><br><span class="line">ENV CATALINA_BASH /usr/apache-tomcat-10.0.13</span><br><span class="line">ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin </span><br><span class="line"></span><br><span class="line">EXPOSE 8080 暴露端口</span><br><span class="line"></span><br><span class="line">CMD /usr/local/apache-tomcat-10.0.13/bin/startup.sh &amp;&amp; tail -F /usr/local/apache-tomcat-10.0.13/logs/catalina.out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2.构建镜像"></a>2.构建镜像</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker build -t mydockerimages(既自定义镜像的名称) .</span><br><span class="line">**注意：** 最后面有个 &quot;.&quot;这个别忘记了</span><br></pre></td></tr></table></figure>
 
+<h4 id="3-启动容器"><a href="#3-启动容器" class="headerlink" title="3.启动容器"></a>3.启动容器</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9090:8080 --name wapertomcat \ </span><br><span class="line">-v /home/test/tomcat/test:/usr/local/apache-tomcat-10.0.13/webapps/test \</span><br><span class="line">-v /home/test/tomcat/logs/:/usr/local/apache-tomcat-10.0.13/logs 42c9a5d678c0</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker启动出现-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running"><a href="#docker启动出现-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running" class="headerlink" title="docker启动出现 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"></a>docker启动出现 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</h3>
       
     </div>
     
@@ -645,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vim%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">docker容器中无法使用vim的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dockerfile%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">dockerfile参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">docker 构建镜像命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vim%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">docker容器中无法使用vim的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dockerfile%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">dockerfile参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">docker 构建镜像命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">创建自己的镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-DockerFile%E5%88%9B%E5%BB%BA"><span class="nav-number">5.1.</span> <span class="nav-text">1.DockerFile创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="nav-number">5.2.</span> <span class="nav-text">2.构建镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-number">5.3.</span> <span class="nav-text">3.启动容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%90%AF%E5%8A%A8%E5%87%BA%E7%8E%B0-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running"><span class="nav-number">6.</span> <span class="nav-text">docker启动出现 Cannot connect to the Docker daemon at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock. Is the docker daemon running?</span></a></li></ol></div>
             
 
           </div>
