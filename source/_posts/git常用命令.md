@@ -57,3 +57,18 @@ nothing to commit, working tree clean
 ```
 
 然后就大功告成啦！
+
+
+
+git 本地分支和远程分支如何关联
+
+```
+git branch origin 分支名称
+```
+
+git 克隆分支代码
+
+```
+git clone -b 分支名 http://(git@github.comXXXX.git)
+```
+
