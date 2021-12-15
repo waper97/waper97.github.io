@@ -23,6 +23,17 @@ categories: redis使用
 哨兵模式：就是解决redis集群中出现了主机宕机的情况，其会根据用户指定的配置文件，自己动从 从机里面投票选举一个主机，就不用手动配置了
 {% endcodeblock %}
 
+
+
+### 乐观锁、悲观锁
+
+概念？
+
+ 自己的理解：
+
+- 乐观锁：很乐观，认为每次拿数据的时候别人不会修改
+- 悲观锁：很悲观，认为每次拿数据的时候，别人都会吸怪
+
 {% codeblock  lang:html %}
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=26305536&auto=1&height=66"></iframe>
