@@ -19,13 +19,9 @@ comments: true
 
 
 
-
-
-
+# git常见问题
 
 ### **git恢复未提交的误删数据**
-
-1.输入git reflog
 
 ```shell
 $ git reflog
@@ -79,5 +75,43 @@ git 克隆分支代码
 
 ```
 git clone -b 分支名 http://(git@github.comXXXX.git)
+```
+
+
+
+
+
+
+
+### git撤销操作
+
+```shell
+git commit -amend
+```
+
+amend v. 修改、修正
+
+
+
+### 取消已经暂存的文件
+
+```shell
+git reset HEAD <fileName>
+```
+
+或者
+
+```shell
+git restore --staged <file>
+```
+
+![image-20211217100629615](D:\SOFT\waper97.github.io\source\_posts\git常用命令\image-20211217100629615.png)	
+
+### 取消对问文件的修改
+
+**注意：** 恢复文件的所有修改，请确保这个要恢复的文件真的不需要再保留，否则会丢失你修改的内容
+
+```shell
+git checkout -- benchmarks.rb
 ```
 
