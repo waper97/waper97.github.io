@@ -105,7 +105,7 @@ git reset HEAD <fileName>
 git restore --staged <file>
 ```
 
-![image-20211217100629615](D:\SOFT\waper97.github.io\source\_posts\git常用命令\image-20211217100629615.png)	
+![image-20211217100629615](https://raw.githubusercontent.com/waper97/Pic-Go/main/img/202112201032386.png)	
 
 ### 取消对问文件的修改
 
