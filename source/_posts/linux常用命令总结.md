@@ -6,8 +6,28 @@ categories: linux常用命令
 comments: true
 ---
 
+#### linux各目录含义
 
-## linux常用命令总结
+![image-20211223144545818](https://raw.githubusercontent.com/waper97/Pic-Go/main/img/202112231445038.png)
+
+```  java
+boot: 内核  引导加载程序文件
+home: 用户home路径 用户主目录
+tmp:  临时文件
+var ：日志文件 变量文件
+usr :应用程序目录 用户程序
+opt: 可选的附加应用程序
+swap : 交换分区	
+media : 媒体。(用于挂载可移动设备的临时目录。)
+etc ： 配置文件 存放程序所需要的所有配置文件
+proc ：进程信息	
+dev ： 设备文件
+bin : 用户二进制文件
+sbin: 系统二进制文件
+```
+
+#### linux常用命令总结
+
 <!--more-->
 
 {% codeblock %}
