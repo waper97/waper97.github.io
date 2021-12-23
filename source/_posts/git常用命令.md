@@ -7,10 +7,9 @@ comments: true
 
 ---
 
+## git常见问题
 
 <!--more-->
-
-## git常见问题
 
 ## 1.恢复数据相关
 
