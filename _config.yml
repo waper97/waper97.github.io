@@ -8,7 +8,9 @@ subtitle: ''
 description: '个人博客，记录生活、工作，日常'
 keywords:
 author: 王鹏
-language: zh-Hans
+language: 
+- zh-Hans
+- en
 timezone: 'Asia/Shanghai'
 
 # URL
