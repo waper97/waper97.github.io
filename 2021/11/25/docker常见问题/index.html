@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans,en,default">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="常用命令" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="docker常用命令12docker run [OPTIONS] IMAGE [COMMAND] [ARG...] docker run 官方文档地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker常见问题">
+<meta property="og:url" content="https://github.com/waper97/waper97.github.io.git/2021/11/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="waper97的博客">
+<meta property="og:description" content="docker常用命令12docker run [OPTIONS] IMAGE [COMMAND] [ARG...] docker run 官方文档地址">
+<meta property="og:locale">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ebde78c6a3ea485789d6a402577d1906.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ae345c17e39b4b6881875536ecffd864.png">
+<meta property="article:published_time" content="2021-11-25T03:37:12.000Z">
+<meta property="article:modified_time" content="2023-12-05T09:07:17.247Z">
+<meta property="article:author" content="王鹏">
+<meta property="article:tag" content="docker常见问题">
+<meta property="article:tag" content="docker常用命令">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/ebde78c6a3ea485789d6a402577d1906.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/waper97/waper97.github.io.git/2021/11/25/docker常见问题/"/>
+
+
+
+
+
+  <title>docker常见问题 | waper97的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">waper97的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/waper97/waper97.github.io.git/2021/11/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/b%20number%20in%20you%20heart.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="waper97的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">docker常见问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-11-25T11:37:12+08:00">
+                2021-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/reference/commandline/run/">docker run 官方文档地址 </a></p>
+<span id="more"></span>
+<p><strong>常用的Options</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name, shorthand名称、缩写</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--detach</code> , <code>-d</code></td>
+<td></td>
+<td>Run container in background and print container ID :在后台运行容器并打印容器 ID</td>
+</tr>
+<tr>
+<td><code>--env</code> , <code>-e</code></td>
+<td></td>
+<td>Set environment variables : 设置环境变量</td>
+</tr>
+<tr>
+<td><code>--publish</code> , <code>-p</code></td>
+<td></td>
+<td>Publish a container’s port(s) to the host:  将容器的端口发布到主机</td>
+</tr>
+<tr>
+<td><code>--tty</code> , <code>-t</code></td>
+<td></td>
+<td>Allocate a pseudo-TTY :分配一个伪 TTY，即分配一个终端</td>
+</tr>
+<tr>
+<td><code>-- name</code></td>
+<td></td>
+<td>Assign a name to the container: 为容器指定名称</td>
+</tr>
+<tr>
+<td><code>--volume</code> , <code>-v</code></td>
+<td></td>
+<td>Bind mount a volume :绑定挂载卷</td>
+</tr>
+<tr>
+<td><code>--interactive</code> , <code>-i</code></td>
+<td></td>
+<td>Keep STDIN open even if not attached ：即使未连接，也要保持 STDIN 打开   STDIN即（standard input：标准输入），还有STDOUT(standard out:标准输出)，STDEER( standard error :标准错误输出)</td>
+</tr>
+</tbody></table>
+<p>docker 在容器运行时，可以通过ctrl+p </p>
+<p><strong>example:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d -p 80:80 docker/getting-started</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>-d    - run the container in detached mode (in the background)   ：以分离模式运行容器（在后台）</p>
+</li>
+<li><p>-p    - <code>80:80</code> - map port 80 of the host to port 80 in the container :   将主机的 80 端口映射到容器中的 80 端口</p>
+</li>
+</ul>
+<p><strong><img src>Tip</strong> 可以缩写为</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dp 80:80 docker/getting-started</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+<h3 id="docker容器中无法使用vim的问题"><a href="#docker容器中无法使用vim的问题" class="headerlink" title="docker容器中无法使用vim的问题"></a>docker容器中无法使用vim的问题</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- <span class="number">1.</span>输入apt-get update</span><br><span class="line">- <span class="number">2.</span>输入apg-get install vim</span><br><span class="line">    然后就ojbk了</span><br></pre></td></tr></table></figure>
+
+<h3 id="dockerfile参数"><a href="#dockerfile参数" class="headerlink" title="dockerfile参数"></a>dockerfile参数</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">FROM</td>
+<td align="center">基于什么构镜像</td>
+</tr>
+<tr>
+<td align="center">MAINTAINER</td>
+<td align="center">维护者</td>
+</tr>
+<tr>
+<td align="center">EXPOST</td>
+<td align="center">暴露的端口</td>
+</tr>
+<tr>
+<td align="center">ENTRYPOINT</td>
+<td align="center">追加的命令</td>
+</tr>
+<tr>
+<td align="center">RUN</td>
+<td align="center">要执行的命令</td>
+</tr>
+<tr>
+<td align="center">WORKDIR</td>
+<td align="center">为任何 RUN 设置工作目录</td>
+</tr>
+<tr>
+<td align="center">ADD</td>
+<td align="center">复制新文件  采用可识别压缩格式（identity、gzip、bzip2 或 xz）的本地 tar 存档，则将其解压缩为目录</td>
+</tr>
+<tr>
+<td align="center">ENV</td>
+<td align="center">设置环境变量</td>
+</tr>
+<tr>
+<td align="center">VOLUME</td>
+<td align="center">指令创建一个具有指定名称的挂载点</td>
+</tr>
+<tr>
+<td align="center">COPY</td>
+<td align="center">指令从 <src> 复制新的文件或目录，并将它们添加到容器的文件系统中的路径</src></td>
+</tr>
+</tbody></table>
+<h3 id="docker-构建镜像命令"><a href="#docker-构建镜像命令" class="headerlink" title="docker 构建镜像命令"></a>docker 构建镜像命令</h3><p>docker build -f xxxx -t xxxxx2 .</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-f</td>
+<td align="center">dockerfile文件</td>
+</tr>
+<tr>
+<td align="center">-t</td>
+<td align="center">tag 构建成镜像的名称</td>
+</tr>
+</tbody></table>
+<p><strong>这个点”.” 别忘记</strong></p>
+<h3 id="创建自己的镜像"><a href="#创建自己的镜像" class="headerlink" title="创建自己的镜像"></a>创建自己的镜像</h3><h4 id="1-DockerFile创建"><a href="#1-DockerFile创建" class="headerlink" title="1.DockerFile创建"></a>1.DockerFile创建</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[rectangle setX: 10 y: 10 width: 20 height: 20];</span><br><span class="line"></span><br><span class="line">FROM centos</span><br><span class="line">MAINTAINER waper97&lt;563667426@qq.com&gt; 维护人</span><br><span class="line">COPY readMe.md /usr/local/readeMe.md 复制文件到指定路径</span><br><span class="line">ADD jdk-8u311-linux-x64.tar.gz /usr/local/ 解压到指定路径下</span><br><span class="line">ADD apache-tomcat-10.0.13.tar.gz /usr/local/ 解压到指定路径下</span><br><span class="line"></span><br><span class="line">RUN yum -y install vim 执行命令</span><br><span class="line">ENV MYPATH /usr/local</span><br><span class="line">WORKDIR $MYPATH</span><br><span class="line"></span><br><span class="line">ENV JAVA_HOME /usr/local/jdk1.8.0_311</span><br><span class="line">ENV CLASSPATH_HOME $JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">ENV CATALINA_HOME /usr/local/apache-tomcat-10.0.13</span><br><span class="line">ENV CATALINA_BASH /usr/apache-tomcat-10.0.13</span><br><span class="line">ENV PATH $PATH:$JAVA_HOME/bin:$CATALINA_HOME/lib:$CATALINA_HOME/bin </span><br><span class="line"></span><br><span class="line">EXPOSE 8080 暴露端口</span><br><span class="line"></span><br><span class="line">CMD /usr/local/apache-tomcat-10.0.13/bin/startup.sh &amp;&amp; tail -F /usr/local/apache-tomcat-10.0.13/logs/catalina.out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="2-构建镜像"><a href="#2-构建镜像" class="headerlink" title="2.构建镜像"></a>2.构建镜像</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">docker build -t mydockerimages(既自定义镜像的名称) .</span><br><span class="line">**注意：** 最后面有个 &quot;.&quot;这个别忘记了</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-启动容器"><a href="#3-启动容器" class="headerlink" title="3.启动容器"></a>3.启动容器</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 9090:8080 --name wapertomcat \ </span><br><span class="line">-v /home/test/tomcat/test:/usr/local/apache-tomcat-10.0.13/webapps/test \</span><br><span class="line">-v /home/test/tomcat/logs/:/usr/local/apache-tomcat-10.0.13/logs 42c9a5d678c0</span><br></pre></td></tr></table></figure>
+
+<h3 id="docker启动出现-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running"><a href="#docker启动出现-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running" class="headerlink" title="docker启动出现 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?"></a>docker启动出现 Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?</h3><h3 id="Docker网络"><a href="#Docker网络" class="headerlink" title="Docker网络"></a>Docker网络</h3><h4 id="docker-容器内部无法使用ip-addr"><a href="#docker-容器内部无法使用ip-addr" class="headerlink" title="docker 容器内部无法使用ip addr"></a>docker 容器内部无法使用ip addr</h4><p><img src="https://img-blog.csdnimg.cn/ebde78c6a3ea485789d6a402577d1906.png" alt="在这里插入图片描述"></p>
+<p>可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update &amp;&amp; apt install -y iproute2</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/ae345c17e39b4b6881875536ecffd864.png" alt="在这里插入图片描述"></p>
+<h4 id="linux内部可以ping通docker内的容器"><a href="#linux内部可以ping通docker内的容器" class="headerlink" title="linux内部可以ping通docker内的容器"></a>linux内部可以ping通docker内的容器</h4><p>原理:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>172.17.0.5</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt install iputils-ping &amp;&amp;  apt install net-tools </span><br></pre></td></tr></table></figure>
+<h4 id="docker容器互链"><a href="#docker容器互链" class="headerlink" title="docker容器互链"></a>docker容器互链</h4><h4 id="–link"><a href="#–link" class="headerlink" title="–link"></a>–link</h4><p>容器之间的互联 ： 容器内部的host映射关系</p>
+<h4 id="自定义网络"><a href="#自定义网络" class="headerlink" title="自定义网络"></a>自定义网络</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bridge: 桥接 （default）</span><br><span class="line"></span><br><span class="line">none: 不配置网络</span><br><span class="line"></span><br><span class="line">host: 合宿主机共享网络</span><br><span class="line"></span><br><span class="line">container：容器</span><br><span class="line"></span><br><span class="line">自定义网络会帮我们维护好了对应的关系</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="网络联通"><a href="#网络联通" class="headerlink" title="网络联通"></a>网络联通</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# docker network --help</span><br><span class="line"></span><br><span class="line">Usage:  docker network COMMAND</span><br><span class="line"></span><br><span class="line">Manage networks</span><br><span class="line"></span><br><span class="line">Commands:</span><br><span class="line">  connect     Connect a container to a network</span><br><span class="line">  create      Create a network</span><br><span class="line">  disconnect  Disconnect a container from a network</span><br><span class="line">  inspect     Display detailed information on one or more networks</span><br><span class="line">  ls          List networks</span><br><span class="line">  prune       Remove all unused networks</span><br><span class="line">  rm          Remove one or more networks</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  connect     Connect a container to a network 链接一个容器到一个网络</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <!--<a href="/tags/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" rel="tag">#11 docker常见问题</a> -->
+			<i class="fa fa-tag"></i>
+          
+            <!--<a href="/tags/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="tag">#11 docker常用命令</a> -->
+			<i class="fa fa-tag"></i>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/11/23/nginx%E5%AD%A6%E4%B9%A0/" rel="next" title="nginx学习">
+                <i class="fa fa-chevron-left"></i> nginx学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/12/02/redis%E4%BD%BF%E7%94%A8/" rel="prev" title="redis使用">
+                redis使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+	<!--背景音乐-->
+	<div id="music163">
+	<!---->
+		
+		<!--lucky-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1392600538&auto=1&height=32"></iframe>	
+		<!--西界-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=26305536&auto=0&height=32"></iframe>
+		<!--Unstoppable - Sia-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=400876320&auto=0&height=32"></iframe>
+		<!--夜的钢琴曲5(DJ版)-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1887916639&auto=0&height=32"></iframe>
+		<!--永恒的回忆(杀破狼 演奏曲)-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=4875304&auto=0&height=32"></iframe>
+		<!--告白之夜（纯音乐）-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=1353301300&auto=0&height=32"></iframe>
+		<!--椿-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=298 height=52 src="//music.163.com/outchain/player?type=2&id=479598964&auto=0&height=32"></iframe>
+		<!--哪里都是你-->
+			<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=488249475&auto=0&height=32"></iframe>
+			
+			
+			
+			
+			
+			
+			
+	<!---->
+	</div>
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/b%20number%20in%20you%20heart.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%AE%B9%E5%99%A8%E4%B8%AD%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8vim%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">docker容器中无法使用vim的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dockerfile%E5%8F%82%E6%95%B0"><span class="nav-number">3.</span> <span class="nav-text">dockerfile参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">docker 构建镜像命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E9%95%9C%E5%83%8F"><span class="nav-number">5.</span> <span class="nav-text">创建自己的镜像</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-DockerFile%E5%88%9B%E5%BB%BA"><span class="nav-number">5.1.</span> <span class="nav-text">1.DockerFile创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="nav-number">5.2.</span> <span class="nav-text">2.构建镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E5%90%AF%E5%8A%A8%E5%AE%B9%E5%99%A8"><span class="nav-number">5.3.</span> <span class="nav-text">3.启动容器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%90%AF%E5%8A%A8%E5%87%BA%E7%8E%B0-Cannot-connect-to-the-Docker-daemon-at-unix-var-run-docker-sock-Is-the-docker-daemon-running"><span class="nav-number">6.</span> <span class="nav-text">docker启动出现 Cannot connect to the Docker daemon at unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock. Is the docker daemon running?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E7%BD%91%E7%BB%9C"><span class="nav-number">7.</span> <span class="nav-text">Docker网络</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#docker-%E5%AE%B9%E5%99%A8%E5%86%85%E9%83%A8%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8ip-addr"><span class="nav-number">7.1.</span> <span class="nav-text">docker 容器内部无法使用ip addr</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux%E5%86%85%E9%83%A8%E5%8F%AF%E4%BB%A5ping%E9%80%9Adocker%E5%86%85%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="nav-number">7.2.</span> <span class="nav-text">linux内部可以ping通docker内的容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#docker%E5%AE%B9%E5%99%A8%E4%BA%92%E9%93%BE"><span class="nav-number">7.3.</span> <span class="nav-text">docker容器互链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E2%80%93link"><span class="nav-number">7.4.</span> <span class="nav-text">–link</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BD%91%E7%BB%9C"><span class="nav-number">7.5.</span> <span class="nav-text">自定义网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%81%94%E9%80%9A"><span class="nav-number">7.6.</span> <span class="nav-text">网络联通</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王鹏</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
